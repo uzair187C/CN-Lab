@@ -1,0 +1,768 @@
+Here you go:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CN Lab Finals — Labs 9, 10, 11, 12</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #58a6ff;
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #8b949e;
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .q-label {
+    display: inline-block;
+    background: #1f6feb;
+    color: white;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .section {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f0883e;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .lab-badge {
+    display: inline-block;
+    background: #0d419d;
+    color: #79c0ff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .concept {
+    background: #0d1117;
+    border-left: 3px solid #58a6ff;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .concept-title {
+    font-weight: 700;
+    color: #79c0ff;
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+
+  .concept p {
+    color: #c9d1d9;
+    font-size: 12px;
+  }
+
+  pre, code {
+    font-family: 'Consolas', 'Courier New', monospace;
+  }
+
+  .code-block {
+    background: #010409;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 8px 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #e6edf3;
+    white-space: pre;
+  }
+
+  .cmd { color: #79c0ff; }
+  .comment { color: #8b949e; }
+  .keyword { color: #f78166; }
+  .ip { color: #7ee787; }
+  .prompt { color: #d2a679; }
+  .highlight { color: #e3b341; }
+
+  .step {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    background: #f0883e;
+    color: #0d1117;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-title {
+    font-weight: 700;
+    color: #e6edf3;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  .step-note {
+    font-size: 11px;
+    color: #8b949e;
+    margin-top: 3px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 8px 0;
+  }
+
+  th {
+    background: #1f2937;
+    color: #79c0ff;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid #30363d;
+  }
+
+  td {
+    padding: 5px 10px;
+    border: 1px solid #21262d;
+    color: #c9d1d9;
+  }
+
+  tr:nth-child(even) td { background: #0d1117; }
+
+  .warn {
+    background: #2d1b00;
+    border: 1px solid #d29922;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #e3b341;
+    margin: 8px 0;
+  }
+
+  .warn::before { content: "⚠️  "; }
+
+  .tip {
+    background: #0d2d1a;
+    border: 1px solid #2ea043;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #7ee787;
+    margin: 8px 0;
+  }
+
+  .tip::before { content: "✅  "; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px dashed #30363d;
+    margin: 14px 0;
+  }
+
+  .mini-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #1c2128;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+    color: #c9d1d9;
+    margin: 2px;
+  }
+
+  .router-block {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+
+  .router-title {
+    font-weight: 700;
+    color: #d2a679;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<h1>CN Lab Finals — Quick Reference</h1>
+<div class="subtitle">Labs 9 · 10 · 11 · 12 &nbsp;|&nbsp; UMT Lahore &nbsp;|&nbsp; Spring '26</div>
+
+<div class="q-label">Q1 — Router, VLAN &amp; DHCP</div>
+
+<div class="section">
+  <div class="section-title">LAB 9 — Inter-VLAN Communication (Router-on-a-Stick) <span class="lab-badge">Lab 9</span></div>
+
+  <div class="concept">
+    <div class="concept-title">What is Inter-VLAN?</div>
+    <p>VLANs are isolated by default. To let different VLANs talk, you need a <strong>Layer 3 router</strong> with sub-interfaces — one per VLAN. The trunk link carries all VLAN traffic using <strong>dot1Q tagging</strong>.</p>
+  </div>
+
+  <div class="warn">This lab uses dot1Q encapsulation on router sub-interfaces. The router port must be UP (no shutdown) and each sub-interface needs encapsulation dot1Q [VLAN-ID].</div>
+
+  <hr class="divider">
+
+  <p class="mini-label">IP Plan</p>
+  <table>
+    <tr><th>VLAN</th><th>Name</th><th>PC IPs</th><th>Gateway</th></tr>
+    <tr><td>100</td><td>Sales</td><td>10.0.0.1 / 10.0.0.2</td><td>10.0.0.10</td></tr>
+    <tr><td>200</td><td>Marketing</td><td>20.0.0.1 / 20.0.0.2</td><td>20.0.0.10</td></tr>
+    <tr><td>300</td><td>Finance</td><td>30.0.0.1 / 30.0.0.2</td><td>30.0.0.10</td></tr>
+  </table>
+
+  <hr class="divider">
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Assign Static IPs to PCs + Set Default Gateways</div>
+      <p class="step-note">PC1: IP=10.0.0.1, GW=10.0.0.10 | PC3: IP=20.0.0.1, GW=20.0.0.10 | PC5: IP=30.0.0.1, GW=30.0.0.10</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Create VLANs on Switch0 &amp; Switch1</div>
+      <div class="code-block"><pre><span class="prompt">Switch> </span><span class="cmd">enable</span>
+<span class="prompt">Switch# </span><span class="cmd">config terminal</span>
+<span class="prompt">Switch(config)# </span><span class="cmd">hostname Switch0</span>
+
+<span class="prompt">Switch0(config)# </span><span class="cmd">vlan 100</span>
+<span class="prompt">Switch0(config-vlan)# </span><span class="cmd">name sales</span>
+<span class="prompt">Switch0(config-vlan)# </span><span class="cmd">exit</span>
+<span class="prompt">Switch0(config)# </span><span class="cmd">vlan 200</span>
+<span class="prompt">Switch0(config-vlan)# </span><span class="cmd">name marketing</span>
+<span class="prompt">Switch0(config-vlan)# </span><span class="cmd">exit</span>
+<span class="prompt">Switch0(config)# </span><span class="cmd">vlan 300</span>
+<span class="prompt">Switch0(config-vlan)# </span><span class="cmd">name finance</span>
+<span class="prompt">Switch0(config-vlan)# </span><span class="cmd">exit</span>
+<span class="prompt">Switch0# </span><span class="cmd">show vlan</span></pre></div>
+      <p class="step-note">Do the SAME on Switch1</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Assign Ports to VLANs — on both switches</div>
+      <div class="code-block"><pre><span class="prompt">Switch0(config)# </span><span class="cmd">interface fastethernet 0/1</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport mode access</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport access vlan 100</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Switch0(config)# </span><span class="cmd">interface fastethernet 0/2</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport mode access</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport access vlan 200</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Switch0(config)# </span><span class="cmd">interface fastethernet 0/3</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport mode access</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport access vlan 300</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">exit</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <div class="step-title">Set Trunk Port Between the 2 Switches (Fa0/4)</div>
+      <div class="code-block"><pre><span class="prompt">Switch0(config)# </span><span class="cmd">interface fastethernet 0/4</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport mode trunk</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">switchport trunk allowed vlan 100,200,300</span>
+<span class="prompt">Switch0(config-if)# </span><span class="cmd">exit</span>
+<span class="comment">-- Repeat same on Switch1 Fa0/4 --</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <div class="step-title">Set Switch1 Port to Router as Trunk (Fa0/5)</div>
+      <div class="code-block"><pre><span class="prompt">Switch1(config)# </span><span class="cmd">interface fastEthernet 0/5</span>
+<span class="prompt">Switch1(config-if)# </span><span class="cmd">switchport mode trunk</span>
+<span class="prompt">Switch1(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Switch1# </span><span class="cmd">write</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <div class="step-title">Configure Router — Sub-Interfaces with dot1Q</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface gigabitethernet 0/0/0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span>
+
+<span class="prompt">Router(config)# </span><span class="cmd">interface gigabitethernet 0/0/0.100</span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">encapsulation dot1Q <span class="highlight">100</span></span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">ip address <span class="ip">10.0.0.10</span> 255.0.0.0</span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">exit</span>
+
+<span class="prompt">Router(config)# </span><span class="cmd">interface gigabitethernet 0/0/0.200</span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">encapsulation dot1Q <span class="highlight">200</span></span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">ip address <span class="ip">20.0.0.10</span> 255.0.0.0</span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">exit</span>
+
+<span class="prompt">Router(config)# </span><span class="cmd">interface gigabitethernet 0/0/0.300</span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">encapsulation dot1Q <span class="highlight">300</span></span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">ip address <span class="ip">30.0.0.10</span> 255.0.0.0</span>
+<span class="prompt">Router(config-subif)# </span><span class="cmd">exit</span>
+
+<span class="prompt">Router(config)# </span><span class="cmd">Ctrl+Z</span>
+<span class="prompt">Router# </span><span class="cmd">write</span></pre></div>
+      <div class="tip">Now ping from VLAN 100 PC to VLAN 200 PC — should succeed!</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">LAB 10 — DHCP on Router + DNS Server <span class="lab-badge">Lab 10</span></div>
+
+  <div class="concept">
+    <div class="concept-title">What is DHCP?</div>
+    <p>DHCP automatically assigns IP addresses to PCs. The router gives out IPs from a defined pool. DNS server IP is also sent to PCs so they can resolve domain names.</p>
+  </div>
+
+  <div class="warn">Always exclude static IPs (router + DNS server) from the DHCP pool so they don't get reassigned.</div>
+
+  <hr class="divider">
+
+  <p class="mini-label">Network Plan — 192.168.1.0/24</p>
+  <table>
+    <tr><th>Device</th><th>IP</th><th>Method</th></tr>
+    <tr><td>Router (Gateway)</td><td>192.168.1.1</td><td>Static</td></tr>
+    <tr><td>DNS Server</td><td>192.168.1.2</td><td>Static</td></tr>
+    <tr><td>PCs</td><td>192.168.1.6 onwards</td><td>DHCP (auto)</td></tr>
+  </table>
+
+  <hr class="divider">
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Configure DNS Server Machine</div>
+      <p style="font-size:12px; color:#c9d1d9;">Assign static IP <strong style="color:#7ee787">192.168.1.2</strong> on server NIC. Then go to <strong>Services → DNS</strong>, turn ON, add record: <strong style="color:#e3b341">www.cisco.com → 192.168.1.2</strong>, click Add.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Configure Router as DHCP Server</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">hostname DHCP-server</span>
+
+<span class="prompt">DHCP-server(config)# </span><span class="cmd">interface fastethernet 0/0</span>
+<span class="prompt">DHCP-server(config-if)# </span><span class="cmd">ip address <span class="ip">192.168.1.1</span> 255.255.255.0</span>
+<span class="prompt">DHCP-server(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">DHCP-server(config-if)# </span><span class="cmd">exit</span>
+
+<span class="prompt">DHCP-server(config)# </span><span class="cmd">ip dhcp pool <span class="highlight">deply</span></span>
+<span class="prompt">DHCP-server(dhcp-config)# </span><span class="cmd">network <span class="ip">192.168.1.0</span> 255.255.255.0</span>
+<span class="prompt">DHCP-server(dhcp-config)# </span><span class="cmd">default-router <span class="ip">192.168.1.1</span></span>
+<span class="prompt">DHCP-server(dhcp-config)# </span><span class="cmd">dns-server <span class="ip">192.168.1.2</span></span>
+<span class="prompt">DHCP-server(dhcp-config)# </span><span class="cmd">exit</span>
+
+<span class="prompt">DHCP-server(config)# </span><span class="cmd">ip dhcp excluded-address <span class="ip">192.168.1.1</span> <span class="ip">192.168.1.5</span></span>
+
+<span class="prompt">DHCP-server(config)# </span><span class="cmd">Ctrl+Z</span>
+<span class="prompt">DHCP-server> </span><span class="cmd">write</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Set PCs to DHCP</div>
+      <p style="font-size:12px; color:#c9d1d9;">Click each PC → Desktop → IP Configuration → select <strong style="color:#7ee787">DHCP</strong>. PCs auto-get IPs from 192.168.1.6 onwards.</p>
+      <div class="tip">Verify: IP=192.168.1.6, Subnet=255.255.255.0, GW=192.168.1.1, DNS=192.168.1.2</div>
+    </div>
+  </div>
+</div>
+
+<div class="q-label">Q2 — Dynamic Routing: RIP &amp; OSPF (3 Routers)</div>
+
+<div class="section">
+  <div class="section-title">LAB 11 — RIP Protocol <span class="lab-badge">Lab 11</span></div>
+
+  <div class="concept">
+    <div class="concept-title">What is RIP?</div>
+    <p>RIP is a dynamic routing protocol. Routers share routing tables every 30 seconds and pick the path with the <strong>fewest hops</strong>. Max 15 hops. Always use <strong>RIPv2</strong>.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="mini-label">Key Facts</p>
+      <div class="tag">Metric: Hop Count</div>
+      <div class="tag">Update: every 30s</div>
+      <div class="tag">Max hops: 15</div>
+      <div class="tag">Port: UDP 520</div>
+    </div>
+    <div>
+      <p class="mini-label">show ip route symbols</p>
+      <div class="tag"><span style="color:#7ee787">C</span> = Connected</div>
+      <div class="tag"><span style="color:#f0883e">R</span> = RIP learned</div>
+      <div class="tag">[120/1] = distance/hops</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="mini-label">IP Addressing Table</p>
+  <table>
+    <tr><th>Device</th><th>Interface</th><th>IP Address</th><th>Subnet</th><th>GW</th></tr>
+    <tr><td>PC0</td><td>Fa0</td><td style="color:#7ee787">10.0.0.1</td><td>255.0.0.0</td><td>10.0.0.10</td></tr>
+    <tr><td>PC1</td><td>Fa0</td><td style="color:#7ee787">20.0.0.1</td><td>255.0.0.0</td><td>20.0.0.10</td></tr>
+    <tr><td>PC2</td><td>Fa0</td><td style="color:#7ee787">20.0.0.2</td><td>255.0.0.0</td><td>20.0.0.10</td></tr>
+    <tr><td>Router0</td><td>Fa0/0</td><td style="color:#7ee787">10.0.0.10</td><td>255.0.0.0</td><td>—</td></tr>
+    <tr><td>Router0</td><td>Fa0/1</td><td style="color:#7ee787">192.168.1.1</td><td>255.255.255.0</td><td>—</td></tr>
+    <tr><td>Router1</td><td>Fa0/1</td><td style="color:#7ee787">192.168.1.2</td><td>255.255.255.0</td><td>—</td></tr>
+    <tr><td>Router1</td><td>Fa0/0</td><td style="color:#7ee787">20.0.0.10</td><td>255.0.0.0</td><td>—</td></tr>
+  </table>
+
+  <hr class="divider">
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Configure Router0 Interfaces</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">hostname Router0</span>
+
+<span class="prompt">Router0(config)# </span><span class="cmd">interface fastethernet 0/0</span>
+<span class="prompt">Router0(config-if)# </span><span class="cmd">ip address <span class="ip">10.0.0.10</span> 255.0.0.0</span>
+<span class="prompt">Router0(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router0(config-if)# </span><span class="cmd">exit</span>
+
+<span class="prompt">Router0(config)# </span><span class="cmd">interface fastethernet 0/1</span>
+<span class="prompt">Router0(config-if)# </span><span class="cmd">ip address <span class="ip">192.168.1.1</span> 255.255.255.0</span>
+<span class="prompt">Router0(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router0(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Router0# </span><span class="cmd">write</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Configure Router1 Interfaces</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">hostname Router1</span>
+
+<span class="prompt">Router1(config)# </span><span class="cmd">interface fastethernet 0/1</span>
+<span class="prompt">Router1(config-if)# </span><span class="cmd">ip address <span class="ip">192.168.1.2</span> 255.255.255.0</span>
+<span class="prompt">Router1(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router1(config-if)# </span><span class="cmd">exit</span>
+
+<span class="prompt">Router1(config)# </span><span class="cmd">interface fastethernet 0/0</span>
+<span class="prompt">Router1(config-if)# </span><span class="cmd">ip address <span class="ip">20.0.0.10</span> 255.0.0.0</span>
+<span class="prompt">Router1(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router1(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Router1# </span><span class="cmd">write</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Enable RIP on Router0</div>
+      <div class="code-block"><pre><span class="prompt">Router0(config)# </span><span class="cmd">router rip</span>
+<span class="prompt">Router0(config-router)# </span><span class="cmd">version 2</span>
+<span class="prompt">Router0(config-router)# </span><span class="cmd">network <span class="ip">10.0.0.0</span></span>
+<span class="prompt">Router0(config-router)# </span><span class="cmd">network <span class="ip">192.168.1.0</span></span>
+<span class="prompt">Router0(config-router)# </span><span class="cmd">no auto-summary</span>
+<span class="prompt">Router0(config-router)# </span><span class="cmd">exit</span>
+<span class="prompt">Router0# </span><span class="cmd">write</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <div class="step-title">Enable RIP on Router1</div>
+      <div class="code-block"><pre><span class="prompt">Router1(config)# </span><span class="cmd">router rip</span>
+<span class="prompt">Router1(config-router)# </span><span class="cmd">version 2</span>
+<span class="prompt">Router1(config-router)# </span><span class="cmd">network <span class="ip">192.168.1.0</span></span>
+<span class="prompt">Router1(config-router)# </span><span class="cmd">network <span class="ip">20.0.0.0</span></span>
+<span class="prompt">Router1(config-router)# </span><span class="cmd">no auto-summary</span>
+<span class="prompt">Router1(config-router)# </span><span class="cmd">exit</span>
+<span class="prompt">Router1# </span><span class="cmd">write</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <div class="step-title">Verify &amp; Test</div>
+      <div class="code-block"><pre><span class="prompt">Router0# </span><span class="cmd">show ip route</span>
+<span class="prompt">Router0# </span><span class="cmd">show ip rip database</span>
+<span class="prompt">Router0# </span><span class="cmd">show ip interface brief</span></pre></div>
+      <p style="font-size:12px;color:#c9d1d9;margin-top:6px;">From PC0 Command Prompt: <code style="background:#010409;padding:1px 5px;border-radius:3px;color:#7ee787">ping 20.0.0.1</code> and <code style="background:#010409;padding:1px 5px;border-radius:3px;color:#7ee787">ping 20.0.0.2</code></p>
+    </div>
+  </div>
+
+  <div class="warn">3 critical things: <strong>version 2</strong>, <strong>no auto-summary</strong>, use network address not host IP (10.0.0.0 not 10.0.0.1)</div>
+</div>
+
+<div class="section">
+  <div class="section-title">LAB 12 — OSPF Protocol (3 Routers) <span class="lab-badge">Lab 12</span></div>
+
+  <div class="concept">
+    <div class="concept-title">What is OSPF?</div>
+    <p>OSPF is a link-state routing protocol using <strong>cost</strong> as metric. Faster than RIP. Uses Dijkstra's algorithm. All routers go in <strong>Area 0</strong>. Uses <strong>wildcard masks</strong> (inverse of subnet mask).</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="mini-label">Wildcard Masks</p>
+      <table>
+        <tr><th>Subnet Mask</th><th>Wildcard</th></tr>
+        <tr><td>255.255.255.0</td><td>0.0.0.255</td></tr>
+        <tr><td>255.255.255.252</td><td>0.0.0.3</td></tr>
+        <tr><td>255.0.0.0</td><td>0.255.255.255</td></tr>
+      </table>
+    </div>
+    <div>
+      <p class="mini-label">RIP vs OSPF</p>
+      <table>
+        <tr><th>Feature</th><th>RIP</th><th>OSPF</th></tr>
+        <tr><td>Metric</td><td>Hops</td><td>Cost</td></tr>
+        <tr><td>Speed</td><td>Slower</td><td>Faster</td></tr>
+        <tr><td>Route tag</td><td>R</td><td>O</td></tr>
+        <tr><td>Areas</td><td>No</td><td>Yes (Area 0)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p class="mini-label">IP Addressing Table</p>
+  <table>
+    <tr><th>Router</th><th>Interface</th><th>IP Address</th><th>Purpose</th></tr>
+    <tr><td>R1</td><td>Fa0/0</td><td style="color:#7ee787">192.168.1.1 /24</td><td>LAN (PC1, PC2)</td></tr>
+    <tr><td>R1</td><td>Fa0/1</td><td style="color:#7ee787">10.0.0.1 /30</td><td>Link to R2</td></tr>
+    <tr><td>R2</td><td>Fa0/0</td><td style="color:#7ee787">192.168.2.1 /24</td><td>LAN (PC3, PC4)</td></tr>
+    <tr><td>R2</td><td>Fa0/1</td><td style="color:#7ee787">10.0.0.2 /30</td><td>Link to R1</td></tr>
+    <tr><td>R2</td><td>Fa0/2</td><td style="color:#7ee787">10.0.0.5 /30</td><td>Link to R3</td></tr>
+    <tr><td>R3</td><td>Fa0/0</td><td style="color:#7ee787">192.168.3.1 /24</td><td>LAN (PC5, PC6)</td></tr>
+    <tr><td>R3</td><td>Fa0/1</td><td style="color:#7ee787">10.0.0.6 /30</td><td>Link to R2</td></tr>
+  </table>
+
+  <hr class="divider">
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Configure R1 Interfaces</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">192.168.1.1</span> 255.255.255.0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/1</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">10.0.0.1</span> 255.255.255.252</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Configure R2 Interfaces (3 interfaces!)</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">192.168.2.1</span> 255.255.255.0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/1</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">10.0.0.2</span> 255.255.255.252</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/2</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">10.0.0.5</span> 255.255.255.252</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Configure R3 Interfaces</div>
+      <div class="code-block"><pre><span class="prompt">Router> </span><span class="cmd">enable</span>
+<span class="prompt">Router# </span><span class="cmd">configure terminal</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">192.168.3.1</span> 255.255.255.0</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span>
+<span class="prompt">Router(config)# </span><span class="cmd">interface fastEthernet 0/1</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">ip address <span class="ip">10.0.0.6</span> 255.255.255.252</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">no shutdown</span>
+<span class="prompt">Router(config-if)# </span><span class="cmd">exit</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <div class="step-title">OSPF on R1</div>
+      <div class="code-block"><pre><span class="prompt">Router(config)# </span><span class="cmd">router ospf <span class="highlight">1</span></span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">192.168.1.0</span> <span class="highlight">0.0.0.255</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">10.0.0.0</span> <span class="highlight">0.0.0.3</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">exit</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <div class="step-title">OSPF on R2</div>
+      <div class="code-block"><pre><span class="prompt">Router(config)# </span><span class="cmd">router ospf <span class="highlight">1</span></span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">192.168.2.0</span> <span class="highlight">0.0.0.255</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">10.0.0.0</span> <span class="highlight">0.0.0.3</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">10.0.0.4</span> <span class="highlight">0.0.0.3</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">exit</span></pre></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <div class="step-title">OSPF on R3</div>
+      <div class="code-block"><pre><span class="prompt">Router(config)# </span><span class="cmd">router ospf <span class="highlight">1</span></span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">192.168.3.0</span> <span class="highlight">0.0.0.255</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">network <span class="ip">10.0.0.4</span> <span class="highlight">0.0.0.3</span> area 0</span>
+<span class="prompt">Router(config-router)# </span><span class="cmd">exit</span></pre></div>
+      <p class="step-note">Save each router: Ctrl+Z then write</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-content">
+      <div class="step-title">Verify OSPF</div>
+      <div class="code-block"><pre><span class="prompt">Router# </span><span class="cmd">show ip ospf neighbor</span>
+<span class="prompt">Router# </span><span class="cmd">show ip route</span>
+<span class="prompt">Router# </span><span class="cmd">show ip ospf</span></pre></div>
+      <div class="tip">Test: ping from PC1 (192.168.1.2) to 192.168.2.2 and 192.168.3.2</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">⚡ Must-Remember Commands</div>
+  <div class="two-col">
+    <div>
+      <p class="mini-label">Universal Router Commands</p>
+      <div class="code-block"><pre><span class="cmd">enable</span>              <span class="comment">User → Priv mode</span>
+<span class="cmd">configure terminal</span>  <span class="comment">Enter config mode</span>
+<span class="cmd">interface fa0/0</span>     <span class="comment">Select interface</span>
+<span class="cmd">ip address X.X mask</span>
+<span class="cmd">no shutdown</span>         <span class="comment">Turn interface ON</span>
+<span class="cmd">exit</span>                <span class="comment">Go back one level</span>
+<span class="cmd">Ctrl+Z</span>              <span class="comment">Back to priv mode</span>
+<span class="cmd">write</span>               <span class="comment">Save config!</span></pre></div>
+    </div>
+    <div>
+      <p class="mini-label">Common Mistakes</p>
+      <table>
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Forget no shutdown</td><td>Always add it</td></tr>
+        <tr><td>RIP: no version 2</td><td>type version 2</td></tr>
+        <tr><td>RIP: no auto-summary</td><td>Always add it</td></tr>
+        <tr><td>RIP: host IP in network</td><td>Use network addr</td></tr>
+        <tr><td>OSPF: wrong wildcard</td><td>/24→0.0.0.255 /30→0.0.0.3</td></tr>
+        <tr><td>Forget write</td><td>Always save!</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+```
